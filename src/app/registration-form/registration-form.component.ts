@@ -6,10 +6,10 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { User } from '../interfaces'; 
+import { User } from '../interfaces';
 import { ContainerService } from '../container.service';
 
-const matchPassword: ValidatorFn = (
+export const matchPassword: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
   const password = control.get('password');
@@ -21,10 +21,10 @@ const matchPassword: ValidatorFn = (
 };
 @Component({
   selector: 'registration-form',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
+  templateUrl: './registration-form.component.html',
+  styleUrls: ['./registration-form.component.scss'],
 })
-export class RegistrationComponent {
+export class RegistrationFormComponent {
   public allUser: User[] = this.userService.users;
   public editingIndex: number | null = null;
   public removeIndex: boolean = false;
@@ -32,23 +32,47 @@ export class RegistrationComponent {
   public registrationForm = this.fb.group(
     {
       email: ['', [Validators.required, Validators.email]],
-      password: ['',[Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/), Validators.minLength(8)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9]+$/),
+          Validators.minLength(8),
+        ],
+      ],
       confirmPassword: ['', Validators.required],
       agreement: [false, Validators.requiredTrue],
-      nickname: ['',[Validators.required, Validators.pattern(/^[a-zA-Z0-9-]+$/)]],
-      phoneNumber: ['',[Validators.required, Validators.pattern(/^\+995\d{9}$/)]],
-      website: ['',[Validators.required, Validators.pattern(/^https?:\/\/\S+/i)]],
+      nickname: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z0-9-]+$/)],
+      ],
+      phoneNumber: [
+        '',
+        [Validators.required, Validators.pattern(/^\+995\d{9}$/)],
+      ],
+      website: [
+        '',
+        [Validators.required, Validators.pattern(/^https?:\/\/\S+/i)],
+      ],
     },
     {
       validators: matchPassword,
     }
   );
 
-  constructor(private fb: FormBuilder, private userService:ContainerService) {}
+  constructor(private fb: FormBuilder, private userService: ContainerService) {}
 
   onSubmit() {
     const user = this.registrationForm.value;
-    if (user.email && user.password && user.confirmPassword && user.phoneNumber && user.website && user.agreement && user.nickname) {
+    if (
+      user.email &&
+      user.password &&
+      user.confirmPassword &&
+      user.phoneNumber &&
+      user.website &&
+      user.agreement &&
+      user.nickname
+    ) {
       this.userService.users.push({
         email: user.email,
         password: user.password,
@@ -60,7 +84,7 @@ export class RegistrationComponent {
         isRemoving: false,
       });
     }
-    
+
     this.registrationForm.reset(); ////reset
   }
   public clickRemove(index: number) {
@@ -70,15 +94,31 @@ export class RegistrationComponent {
     this.editingIndex = null;
     this.allUser.splice(index, 1);
   }
-  
+
   public updateForm = this.fb.group(
     {
       email: ['', [Validators.required, Validators.email]],
-      password: ['',[Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/), Validators.minLength(8)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9]+$/),
+          Validators.minLength(8),
+        ],
+      ],
       confirmPassword: ['', Validators.required],
-      nickname: ['',[Validators.required, Validators.pattern(/^[a-zA-Z0-9-]+$/)]],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\+995\d{9}$/)]],
-      website: ['',[Validators.required, Validators.pattern(/^https?:\/\/\S+/i)]],
+      nickname: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z0-9-]+$/)],
+      ],
+      phoneNumber: [
+        '',
+        [Validators.required, Validators.pattern(/^\+995\d{9}$/)],
+      ],
+      website: [
+        '',
+        [Validators.required, Validators.pattern(/^https?:\/\/\S+/i)],
+      ],
     },
     { validators: matchPassword }
   );

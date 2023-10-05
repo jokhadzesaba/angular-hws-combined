@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <label>
+    E-mail
+    <input type="text" formControlName="email" />
+  </label>
+  <label>
+    Password
+    <input type="password" formControlName="password" />
+  </label>
+  <div>
+    <button (click)="onSubmit()" routerLink="/users" [disabled]="form.invalid">
+      Log In
+    </button>
+    <button routerLink="/registration">
+      Do not have account? Registrate here
+    </button>
+  </div>
+</form>

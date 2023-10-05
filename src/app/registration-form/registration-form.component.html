@@ -1,0 +1,39 @@
+<form [formGroup]="registrationForm">
+    <div>
+      <label for="email"><span>*</span> E-mail:</label>
+      <label for="password"><span>*</span> Password:</label>
+      <label for="confirmPassword"><span>*</span> Confirm Password:</label>
+      <label for="nickName"><span>*</span> Nickname:</label>
+      <label for="phoneNumber"><span>*</span> Phone Number:</label>
+      <label for="website"><span>*</span> Website:</label>
+    </div>
+    <div>
+      <input id="email" type="email" formControlName="email" />
+  
+      <input id="password" type="password" formControlName="password" />
+  
+      <input
+        id="confirmPassword"
+        type="password"
+        formControlName="confirmPassword"
+      />
+  
+      <input id="nickName" type="text" formControlName="nickname" />
+  
+      <input id="phoneNumber" type="text" formControlName="phoneNumber" />
+  
+      <input id="website" type="text" formControlName="website" />
+      <label>
+        <input id="agreement" type="checkbox" formControlName="agreement" />
+        I have read the <span>agreement</span>
+      </label>
+      <button
+        (click)="onSubmit()"
+        type="submit"
+        [disabled]="registrationForm.invalid"
+        routerLink="/login"
+      >
+        Register
+      </button>
+    </div>
+  </form>
