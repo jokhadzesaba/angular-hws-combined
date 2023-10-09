@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './interfaces';
-import { LogInComponent } from './log-in/log-in.component';
+import { User } from '../interfaces/interfaces';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({

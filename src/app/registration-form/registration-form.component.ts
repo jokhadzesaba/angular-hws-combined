@@ -6,8 +6,8 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { User } from '../interfaces';
-import { ContainerService } from '../container.service';
+import { User } from '../interfaces/interfaces';
+import { ContainerService } from '../services/container.service';
 
 export const matchPassword: ValidatorFn = (
   control: AbstractControl

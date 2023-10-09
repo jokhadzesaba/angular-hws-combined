@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+    <label>name:<input formControlName="name" /></label>
+    <app-error-msg [control]="name"></app-error-msg>
+    <label>age:<input formControlName="age" /></label>
+    <app-error-msg [control]="age"></app-error-msg>
+    <label>salary:<input formControlName="salary" /></label>
+    <app-error-msg [control]="salary"></app-error-msg>
+    <button [disabled]="form.invalid" (click)="submit()">registration</button>
+    <app-employee-list></app-employee-list>
+  </form>
+  

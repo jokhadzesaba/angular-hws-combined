@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ContainerService } from '../container.service';
+import { ContainerService } from '../services/container.service';
 import { OnInit } from '@angular/core';
-import { User } from '../interfaces';
+import { User } from '../interfaces/interfaces';
 import { FormBuilder, Validators } from '@angular/forms';
 import { matchPassword } from '../registration-form/registration-form.component';
 import { Router } from '@angular/router';
@@ -46,7 +46,6 @@ export class UsersComponent implements OnInit {
     private containerService: ContainerService,
     private fb: FormBuilder,
     private router: Router
-
   ) {}
   ngOnInit(): void {
     this.users = this.containerService.users;
@@ -76,8 +75,8 @@ export class UsersComponent implements OnInit {
     if (this.checkUser(email, password)) {
       this.editingIndex = null;
       this.containerService.users.splice(index, 1);
-      this.containerService._exists.next(false)
-      this.router.navigate(['/login'])
+      this.containerService._exists.next(false);
+      this.router.navigate(['/login']);
     }
   }
   public editUser(index: number) {

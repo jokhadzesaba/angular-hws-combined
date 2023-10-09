@@ -1,0 +1,19 @@
+
+<div class="ngContainer" *ngIf="allEmployeeData">
+  <div *ngFor="let employee of allEmployeeData | paginate: {itemsPerPage:4, currentPage:p}; let i = index">
+    <p>Name: {{employee.name}}</p>
+    <p>ID: {{employee.id}}</p>
+    <button *ngIf="employee.id !== undefined" (click)="goToEmployeeDetails(employee.id)">Show all info</button>
+    <button *ngIf="employee.id !== undefined" (click)="editEmployee(employee.id)">EDIT</button>
+    <button *ngIf="employee.id !== undefined" (click)="deleteEmployee(employee.id)">DELETE</button>
+    <form *ngIf="isEditing[employee.id!]" [formGroup]="form">
+      <label>Name: <input formControlName="name"></label>
+      <label>Age: <input formControlName="age"></label>
+      <label>Salary: <input formControlName="salary"></label>
+      <button (click)="confirmEdit(employee.id!)">Edit</button>
+      <button (click)="cancelEdit(i)">Cancel Edit</button>
+    </form>
+    
+  </div>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

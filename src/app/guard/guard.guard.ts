@@ -1,5 +1,5 @@
 import { ActivatedRoute, CanActivate, Router } from '@angular/router';
-import { ContainerService } from './container.service';
+import { ContainerService } from '../services/container.service';
 import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthGuard implements CanActivate {

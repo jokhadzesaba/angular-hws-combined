@@ -1,17 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-export interface RootObject {
-  result: string;
-  documentation: string;
-  terms_of_use: string;
-  time_last_update_unix: number;
-  time_last_update_utc: string;
-  time_next_update_unix: number;
-  time_next_update_utc: string;
-  base_code: string;
-  target_code: string;
-  conversion_rate: number;
-}
+import { RootObject } from '../interfaces/interfaces';
+
 @Component({
   selector: 'app-valute-exchange',
   templateUrl: './valute-exchange.component.html',
